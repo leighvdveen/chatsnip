@@ -24,4 +24,8 @@ setup(
     description="A tool for extracting and managing chat data from HTML files.",
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
+    exclude_package_data={'': ['uploads/*']},  # Exclude the uploads directory
+    url="https://github.com/leighvdveen/chatsnip",  # Add your repository URL
+    author="Leigh-Anne Wells",  # Add your name
+    author_email="leighanne.vdveen@gmail.com",  # Add your email address
 )
