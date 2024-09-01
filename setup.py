@@ -1,15 +1,18 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="ChatExtractor",
+    name="chatsnip",
     version="0.1",
     packages=find_packages(),
     install_requires=[
-        'beautifulsoup4',
+        'Flask',
+        'streamlit',
+        'ijson',
+        'Werkzeug',
     ],
     entry_points={
         'console_scripts': [
-            'extract_chat=extract_chat:main',
+            'chatsnip=chatsnip:main',
         ],
     },
     classifiers=[
@@ -18,4 +21,7 @@ setup(
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.6',
+    description="A tool for extracting and managing chat data from HTML files.",
+    long_description=open('README.md').read(),
+    long_description_content_type='text/markdown',
 )
