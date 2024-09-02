@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="chatsnip",
-    version="0.1",
+    version="1.0.3",
     packages=find_packages(),
     install_requires=[
         'Flask',
@@ -12,7 +12,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'chatsnip=chatsnip:main',
+            'chatsnip=chatsnip.chatsnip:main', 
         ],
     },
     classifiers=[
@@ -24,8 +24,8 @@ setup(
     description="A tool for extracting and managing chat data from HTML files.",
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
-    exclude_package_data={'': ['uploads/*']},  # Exclude the uploads directory
-    url="https://github.com/leighvdveen/chatsnip",  # Add your repository URL
-    author="Leigh-Anne Wells",  # Add your name
-    author_email="leighanne.vdveen@gmail.com",  # Add your email address
+    exclude_package_data={'': ['uploads/*', '*.log']},
+    url="https://github.com/leighvdveen/chatsnip",
+    author="Leigh-Anne Wells",
+    author_email="leighanne.vdveen@gmail.com",
 )
