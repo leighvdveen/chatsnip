@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="chatsnip",
-    version="1.0.3",
+    version="1.1.0",
     packages=find_packages(),
     install_requires=[
         'Flask',
@@ -21,7 +21,7 @@ setup(
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.6',
-    description="A tool for extracting and managing chat data from HTML files.",
+    description="A tool for extracting and managing chat data from HTML files. It includes a file splitter function to split up large files so they can be loaded back into ChatGPT if needed.",
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     exclude_package_data={'': ['uploads/*', '*.log']},
