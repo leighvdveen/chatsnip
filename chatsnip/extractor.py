@@ -28,23 +28,31 @@ def extract_chat_from_json_stream(html_file, chat_name):
                 capturing = True
                 json_data_start = line.split('var jsonData =', 1)[1].strip()
                 json_data_str += json_data_start
+                logging.debug(f"Initial JSON data: {json_data_start}")
             elif capturing:
                 json_data_str += line.strip()
                 if line.strip().endswith('];'):
                     logging.info("Reached the end of JSON data.")
                     json_data_str = json_data_str[:-2] + ']'
+                    logging.debug(f"Final JSON data: {json_data_str}")
                     break
 
     if not json_data_str:
         logging.error("No JSON data found or failed to extract JSON data.")
         return None
 
+    # Log the complete JSON data before attempting to parse
+    logging.debug(f"Complete JSON data to be parsed: {json_data_str[:500]}...")
+
     try:
         chat_data = ijson.items(json_data_str, 'item')
         for item in chat_data:
-            logging.info(f"Checking item with title: {item.get('title')}")
-            if isinstance(item, dict) and item.get("title") == chat_name:
-                logging.info(f"Found chat with title: {chat_name}")
+            title = item.get("title")
+            logging.info(f"Checking item with title: {title}")
+            
+            # Match chat name exactly with the title
+            if isinstance(item, dict) and title and title.strip().lower() == chat_name.lower():
+                logging.info(f"Found chat with exact title match: {chat_name}")
                 return extract_text_content_with_author(item)
     except Exception as e:
         logging.error(f"Failed to decode JSON: {e}")

@@ -13,6 +13,9 @@ chat_name = st.text_input("Enter the chat name you want to snip out of the archi
 # Extract Chat Button
 if st.button("Extract Chat"):
     if uploaded_file is not None and chat_name:
+        # Use quotes to handle multi-word chat names
+        chat_name_quoted = f'"{chat_name}"'
+        
         files = {'file': uploaded_file}
         data = {'chat_name': chat_name}
         response = requests.post("http://localhost:5000/extract_chat", files=files, data=data)
